@@ -14,6 +14,20 @@
             "src_url": "https://www.maofly.com/manga/5575.html",
             "src": "maofly.com",
             "cover_url": "phttps://fu.mhtupian.com/uploads/img/7563/7563.jpg"
+        },
+        {
+            "book_id": "syxtl",
+            "book_name": "三眼啸天录",
+            "src_url": "https://www.baozimh.com/comic/sanyanxiaotianlu-samanhua",
+            "src": "baozimh.com",
+            "cover_url": "https://static-tw.baozimh.com/cover/sanyanxiaotianlu-samanhua.jpg"
+        },
+        {
+            "book_id": "yksn",
+            "book_name": "月刊少女野崎君",
+            "src_url": "https://www.baozimh.com/comic/yuekanshaonuyeqijun-chunquan",
+            "src": "baozimh.com",
+            "cover_url": "https://static-tw.baozimh.com/cover/yuekanshaonuyeqijun-chunquan.jpg"
         }
     ]
 }

@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import re
+import makemd
 
 proxy = {"http_proxy": "http://localhost:8088",
          "https_proxy": "http://localhost:8088"}
@@ -71,13 +72,14 @@ class Glens(Book):
         response = requests.request(
             "GET", self.book["src_url"], headers=headers, proxies=proxy)
         soup = BeautifulSoup(response.content, "html.parser")
-        # add_book(**book)
-
+        # 获得章节列表
         alist = soup.select("div.catalog-list > ul.clearfix > li > a")
         for i, a in enumerate(alist, 1):
+            # 增量更新
             if i <= self.last_chapter_order:
                 continue
 
+            # 章节必备属性
             chapter = {
                 "chapter_name": a.text.strip(),
                 "chapter_order": i,
@@ -88,8 +90,10 @@ class Glens(Book):
                 "GET", chapter["chapter_url"], headers=headers, proxies=proxy)
             chapter_soup = BeautifulSoup(
                 chapter_response.content, "html.parser")
+            # 修正章节名
             chapter["chapter_name"] = chapter_soup.select_one(
                 ".read-pos").contents[0]
+            # 添加图片
             for img in chapter_soup.select("ul.comic-list > li > img "):
                 chapter["images"].append(img.attrs["data-echo"])
             # add_chapter(**chapter)
@@ -161,18 +165,64 @@ class Maofly(Book):
             f"update book done :{self.book_id} {self.book['book_name']} chapters:{len(self.book['chapters'])}")
 
 
-if __name__ == "__main__":
-    # crawl_book()
-    # Glens.crawl_book("https://www.g-lens.com/comic/308", "dpcq", True)
-    with open(os.path.join("db", "site.json"), encoding="utf8") as fr:
-        site = json.load(fr)
-    Maofly(**site["books"][1]).update_book()
-    raise NotImplementedError
-    dpcq = {
-        "book_id": "dpcq",
-        "book_name": "斗破苍穹",
-        "src_url": "https://www.g-lens.com/comic/308",
-        "src": "g-lens.com",
-        "cover_url": "http://image.yqmh.com/mh/25934.jpg-600x800.jpg.webp"
+class Baozimh(Book):
+    def __init__(self, book_id, book_name, src_url, src="", cover_url="", force_clean=False) -> None:
+        super().__init__(book_id, book_name, src_url, src, cover_url, force_clean)
+
+    def update_book(self):
+        headers = {
+            'Connection': 'keep-alive',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',
+            'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-User': '?1',
+            'Sec-Fetch-Dest': 'document',
+            'Referer': 'https://www.google.com.hk/',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,ja;q=0.7'
+        }
+        response = requests.request(
+            "GET", self.book["src_url"], headers=headers)
+        soup = BeautifulSoup(response.content, "html.parser")
+        alist = soup.select("#chapter-items a") + \
+            soup.select("#chapters_other_list a")
+        for i, a in enumerate(alist, 1):
+            if i <= self.last_chapter_order:
+                continue
+
+            chapter = {
+                "chapter_name": a.text.strip(),
+                "chapter_order": i,
+                "chapter_url": "https://cn.baozimh.com"+a.attrs["href"],
+                "images": []
+            }
+            chapter_response = requests.request(
+                "GET", chapter["chapter_url"], headers=headers, proxies=proxy)
+            chapter_soup = BeautifulSoup(
+                chapter_response.content, "html.parser")
+            # chapter["chapter_name"] = chapter_soup.select_one(
+            #     ".read-pos").contents[0]
+            for img in chapter_soup.select(".comic-contain img"):
+                chapter["images"].append(img.attrs["src"])
+            # add_chapter(**chapter)
+            print(f"chapter {i} success")
+            self.book["chapters"].append(chapter)
+            self.save_db()
+        print(
+            f"update book done :{self.book_id} {self.book['book_name']} chapters:{len(self.book['chapters'])}")
+
+
+# 添加新源类：仿照`class Glens`，继承Book类编写爬虫，并在`update_book`中更新`router`
+def update_book(**kwargs):
+    router = {
+        "maofly.com": Maofly,
+        "g-lens.com": Glens,
+        "baozimh.com": Baozimh
     }
-    Glens(**dpcq).update_book()
+    router[kwargs["src"]](**kwargs).update_book()
