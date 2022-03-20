@@ -18,8 +18,7 @@ class Book():
         self.book_id = book_id
         if os.path.exists(self.db_file) and not force_clean:
             book = self.load_db()
-            self.last_chapter_order = int(
-                book["chapters"][-1]["chapter_order"])
+            self.last_chapter_order = len(book["chapters"])
         else:
             book = {
                 'book_id': book_id,
