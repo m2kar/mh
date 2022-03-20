@@ -1,0 +1,19 @@
+{
+    "title": "蕾的漫画",
+    "books": [
+        {
+            "book_id": "dpcq",
+            "book_name": "斗破苍穹",
+            "src_url": "https://www.g-lens.com/comic/308",
+            "src": "g-lens.com",
+            "cover_url": "http://image.yqmh.com/mh/25934.jpg-600x800.jpg.webp"
+        },
+        {
+            "book_id": "ashuai",
+            "book_name": "阿衰",
+            "src_url": "https://www.maofly.com/manga/5575.html",
+            "src": "maofly.com",
+            "cover_url": "phttps://fu.mhtupian.com/uploads/img/7563/7563.jpg"
+        }
+    ]
+}

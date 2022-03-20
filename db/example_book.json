@@ -1,0 +1,42 @@
+{
+    "book_id": "dpcq",
+    "book_name": "斗破苍穹",
+    "cover_url": "http://image.yqmh.com/mh/25934.jpg-600x800.jpg.webp",
+    "src": "g-lens.com",
+    "src_url": "https://www.g-lens.com/comic/308",
+    "chapters": [
+        {
+            "chapter_name": "第1话 陨落的天才（上）",
+            "chapter_url": "https://www.g-lens.com/chapter/200694",
+            "chapter_order": 1,
+            "images": [
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/1话/1.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/1话/2.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/1话/3.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/1话/4.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/1话/5.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/1话/6.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/1话/7.jpg-zymk.middle.webp"
+            ]
+        },
+        {
+            "chapter_name": "第2话 陨落的天才（中）",
+            "chapter_order": 2,
+            "chapter_url": "https://www.g-lens.com/chapter/200694",
+            "images": [
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/1.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/2.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/3.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/4.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/5.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/6.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/7.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/8.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/9.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/10.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/11.jpg-zymk.middle.webp",
+                "https://mhpic.xiaomingtaiji.net/comic/D/斗破苍穹拆分版/2话/12.jpg-zymk.middle.webp"
+            ]
+        },
+    ]
+}
